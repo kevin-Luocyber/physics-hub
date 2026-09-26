@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>物理公式庫 | Physics Formula Hub</title>
-    <!-- Tailwind CSS (樣式庫) -->
+    <!-- Tailwind CSS (視覺樣式庫) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { darkMode: 'class' };
     </script>
-    <!-- KaTeX (數學公式排版引擎) -->
+    <!-- KaTeX (高畫質數學公式排版) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
@@ -18,15 +18,15 @@
 
     <!-- 頂部導覽列 -->
     <header class="sticky top-0 z-10 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
             <div>
                 <h1 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    <span>⚛️</span> 物理公式庫 <span class="text-xs px-2 py-0.5 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-300 rounded-full font-normal">高中學習版</span>
+                    <span>⚛️</span> 高中物理公式庫 <span class="text-xs px-2 py-0.5 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-300 rounded-full font-normal">全領域完整版</span>
                 </h1>
-                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">觀念推導 · 邏輯拆解 · 動態視覺示範</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">觀念推導 · 邏輯拆解 · 動態與視覺化圖解</p>
             </div>
             
-            <!-- 深色模式切換 -->
+            <!-- 主題切換 -->
             <button id="themeToggle" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
                 <span id="themeIcon">🌙</span>
             </button>
@@ -34,73 +34,70 @@
     </header>
 
     <!-- 主要內容區 -->
-    <main class="max-w-6xl mx-auto px-4 py-8">
+    <main class="max-w-7xl mx-auto px-4 py-8">
         
-        <!-- 分類標籤 -->
+        <!-- 分類標籤篩選列 -->
         <div class="flex flex-wrap gap-2 mb-8 border-b border-slate-200 dark:border-slate-700 pb-4">
-            <button onclick="filterCards('all', this)" class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-blue-600 text-white shadow-sm transition-all">全部公式</button>
-            <button onclick="filterCards('motion', this)" class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 transition-all">直線運動</button>
-            <button onclick="filterCards('newton', this)" class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 transition-all">牛頓運動定律</button>
+            <button onclick="filterCards('all', this)" class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-600 text-white shadow-sm transition-all">全部領域</button>
+            <button onclick="filterCards('motion', this)" class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all">直線與圓周運動</button>
+            <button onclick="filterCards('newton', this)" class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all">牛頓定律與萬有引力</button>
+            <button onclick="filterCards('energy', this)" class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all">功、能量與動量</button>
+            <button onclick="filterCards('thermal', this)" class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all">熱學與氣體</button>
+            <button onclick="filterCards('wave', this)" class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all">波動與光學</button>
+            <button onclick="filterCards('electro', this)" class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all">靜電與電路</button>
+            <button onclick="filterCards('magnetic', this)" class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all">電磁學</button>
+            <button onclick="filterCards('modern', this)" class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all">近代物理</button>
         </div>
 
-        <!-- 卡片網格 -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- 卡片網格區 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
 
-            <!-- 卡片 1：等加速度速度公式 -->
+            <!-- 1. 運動學：速度公式 -->
             <div class="card motion bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
                 <div class="flex justify-between items-start mb-3">
-                    <span class="text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-md">直線運動</span>
+                    <span class="text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-md">直線與圓周運動</span>
                     <span class="text-xs text-slate-400">公式 01</span>
                 </div>
-                <h2 class="text-lg font-bold mb-2">速度與時間關係式</h2>
-                
+                <h2 class="text-lg font-bold mb-2">等加速度速度公式</h2>
                 <div class="my-4 py-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-center border border-slate-100 dark:border-slate-800">
                     $$v = v_0 + at$$
                 </div>
-
                 <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-4 bg-slate-50/50 dark:bg-slate-900/30 p-3 rounded-lg">
                     <p><b class="text-slate-800 dark:text-slate-200">$v$</b>：末速度 (m/s) ｜ <b class="text-slate-800 dark:text-slate-200">$v_0$</b>：初速度 (m/s)</p>
                     <p><b class="text-slate-800 dark:text-slate-200">$a$</b>：加速度 (m/s²) ｜ <b class="text-slate-800 dark:text-slate-200">$t$</b>：經過時間 (s)</p>
                 </div>
-
-                <!-- 動態圖解 1 -->
                 <div class="mb-4">
-                    <div class="text-xs font-semibold mb-2 text-slate-500">🎬 動態視覺示範（等加速度運動）</div>
+                    <div class="text-xs font-semibold mb-2 text-slate-500">🎬 動態視覺示範（小車等加速度運動）</div>
                     <canvas id="carCanvas" class="w-full h-32 bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700"></canvas>
                     <div class="flex justify-end gap-2 mt-2">
                         <button onclick="toggleCarAnimation()" class="text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">播放 / 暫停</button>
                         <button onclick="resetCarAnimation()" class="text-xs bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-1 rounded hover:bg-slate-300">重置</button>
                     </div>
                 </div>
-
-                <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4 mt-4">
+                <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4">
                     <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">💡 為什麼這樣推理？（推導過程）</h3>
                     <ol class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside leading-relaxed">
-                        <li><b>定義出發</b>：加速度 $a$ 的物理意義是「每秒鐘速度改變了多少」，即 $a = \frac{\Delta v}{\Delta t}$。</li>
-                        <li><b>帶入變數</b>：經過時間 $\Delta t = t$，速度變化量 $\Delta v = v - v_0$，代入得 $a = \frac{v - v_0}{t}$。</li>
-                        <li><b>移項整理</b>：兩邊同乘以 $t$ 得 $at = v - v_0$，把初速 $v_0$ 移到左邊，即得 $v = v_0 + at$。</li>
+                        <li><b>定義出發</b>：加速度 $a$ 是「每秒鐘速度改變多少」$\rightarrow a = \frac{\Delta v}{t}$。</li>
+                        <li><b>移項展開</b>：速度變化量 $\Delta v = v - v_0 = at$。</li>
+                        <li><b>移項整理</b>：將初速 $v_0$ 移到左邊 $\implies v = v_0 + at$。</li>
                     </ol>
                 </div>
             </div>
 
-            <!-- 卡片 2：等加速度位移公式 -->
+            <!-- 2. 運動學：位移公式 -->
             <div class="card motion bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
                 <div class="flex justify-between items-start mb-3">
-                    <span class="text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-md">直線運動</span>
+                    <span class="text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-md">直線與圓周運動</span>
                     <span class="text-xs text-slate-400">公式 02</span>
                 </div>
-                <h2 class="text-lg font-bold mb-2">位移與時間關係式</h2>
-                
+                <h2 class="text-lg font-bold mb-2">等加速度位移公式</h2>
                 <div class="my-4 py-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-center border border-slate-100 dark:border-slate-800">
                     $$x = v_0 t + \frac{1}{2}at^2$$
                 </div>
-
                 <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-4 bg-slate-50/50 dark:bg-slate-900/30 p-3 rounded-lg">
-                    <p><b class="text-slate-800 dark:text-slate-200">$x$</b>：物體位移 (m) ｜ <b class="text-slate-800 dark:text-slate-200">$v_0$</b>：初速度 (m/s)</p>
+                    <p><b class="text-slate-800 dark:text-slate-200">$x$</b>：總位移 (m) ｜ <b class="text-slate-800 dark:text-slate-200">$v_0$</b>：初速度 (m/s)</p>
                     <p><b class="text-slate-800 dark:text-slate-200">$a$</b>：加速度 (m/s²) ｜ <b class="text-slate-800 dark:text-slate-200">$t$</b>：經過時間 (s)</p>
                 </div>
-
-                <!-- 動態圖解 2：v-t 動態累積面積 -->
                 <div class="mb-4">
                     <div class="text-xs font-semibold mb-2 text-slate-500">🎬 動態視覺示範（v-t 圖面積 = 位移 x）</div>
                     <canvas id="vtCanvas" class="w-full h-36 bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700"></canvas>
@@ -109,56 +106,300 @@
                         <button onclick="resetVTAnimation()" class="text-xs bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-1 rounded hover:bg-slate-300">重置</button>
                     </div>
                 </div>
-
-                <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4 mt-4">
+                <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4">
                     <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">💡 為什麼這樣推理？（推導過程）</h3>
                     <ol class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside leading-relaxed">
-                        <li><b>幾何意義</b>：在 $v-t$（速度-時間）圖形下方的<b>總面積</b>，就是物體移動的<b>總位移 $x$</b>。</li>
-                        <li><b>拆成兩個圖形</b>：把這個梯形面積切成兩部分：
-                            <br>• 下方<b>藍色矩形</b>：初速造成的位移 $= v_0 \times t$
-                            <br>• 上方<b>綠色三角形</b>：加速度造成的額外位移 $= \frac{1}{2} \times \text{底} \times \text{高} = \frac{1}{2} t (at) = \frac{1}{2}at^2$
-                        </li>
-                        <li><b>相加即得公式</b>：總位移 $x = \text{矩形面積} + \text{三角形面積} = v_0 t + \frac{1}{2}at^2$。</li>
+                        <li><b>幾何意義</b>：$v-t$ 圖包圍的<b>總面積代表位移 $x$</b>。</li>
+                        <li><b>面積分割</b>：下方矩形面積為 $v_0 t$（初速位移），上方三角形面積為 $\frac{1}{2} t (at) = \frac{1}{2}at^2$（加速位移）。</li>
+                        <li><b>相加結果</b>：兩圖形面積相加即得 $x = v_0 t + \frac{1}{2}at^2$。</li>
                     </ol>
                 </div>
             </div>
 
-            <!-- 卡片 3：牛頓第二運動定律 -->
-            <div class="card newton bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+            <!-- 3. 運動學：向心加速度 -->
+            <div class="card motion bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
                 <div class="flex justify-between items-start mb-3">
-                    <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-md">牛頓運動定律</span>
+                    <span class="text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-md">直線與圓周運動</span>
                     <span class="text-xs text-slate-400">公式 03</span>
                 </div>
+                <h2 class="text-lg font-bold mb-2">勻速圓周運動：向心加速度</h2>
+                <div class="my-4 py-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-center border border-slate-100 dark:border-slate-800">
+                    $$a_c = \frac{v^2}{r} = \omega^2 r$$
+                </div>
+                <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-4 bg-slate-50/50 dark:bg-slate-900/30 p-3 rounded-lg">
+                    <p><b class="text-slate-800 dark:text-slate-200">$a_c$</b>：向心加速度 (m/s²) ｜ <b class="text-slate-800 dark:text-slate-200">$v$</b>：切線速率 (m/s)</p>
+                    <p><b class="text-slate-800 dark:text-slate-200">$r$</b>：旋轉半徑 (m) ｜ <b class="text-slate-800 dark:text-slate-200">$\omega$</b>：角速度 (rad/s)</p>
+                </div>
+                <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4">
+                    <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">💡 為什麼這樣推理？（推導過程）</h3>
+                    <ol class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside leading-relaxed">
+                        <li><b>方向改變</b>：圓周運動即使速率不變，<b>速度方向隨時在改變</b>，因此存在指向圓心的加速度。</li>
+                        <li><b>向量三角形相似</b>：位置向量三角形與速度向量三角形相似 $\implies \frac{\Delta v}{v} = \frac{\Delta x}{r}$。</li>
+                        <li><b>極限代入</b>：$\Delta v = \frac{v \Delta x}{r}$，兩邊同除以時間 $t \implies a_c = \frac{v^2}{r}$。再代入 $v = \omega r$ 得 $a_c = \omega^2 r$。</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- 4. 牛頓定律：F=ma -->
+            <div class="card newton bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex justify-between items-start mb-3">
+                    <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-md">牛頓定律與萬有引力</span>
+                    <span class="text-xs text-slate-400">公式 04</span>
+                </div>
                 <h2 class="text-lg font-bold mb-2">牛頓第二運動定律</h2>
-                
                 <div class="my-4 py-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-center border border-slate-100 dark:border-slate-800">
                     $$F = ma$$
                 </div>
-
                 <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-4 bg-slate-50/50 dark:bg-slate-900/30 p-3 rounded-lg">
-                    <p><b class="text-slate-800 dark:text-slate-200">$F$</b>：外力合力 (N) ｜ <b class="text-slate-800 dark:text-slate-200">$m$</b>：物體質量 (kg)</p>
-                    <p><b class="text-slate-800 dark:text-slate-200">$a$</b>：獲得的加速度 (m/s²)</p>
+                    <p><b class="text-slate-800 dark:text-slate-200">$F$</b>：合外力 (N) ｜ <b class="text-slate-800 dark:text-slate-200">$m$</b>：質量 (kg) ｜ <b class="text-slate-800 dark:text-slate-200">$a$</b>：加速度 (m/s²)</p>
                 </div>
-
-                <!-- 動態圖解 3：質量對比賽車動畫 -->
                 <div class="mb-4">
-                    <div class="text-xs font-semibold mb-2 text-slate-500">🎬 動態視覺示範（相同推力 F = 10N，不同質量比較）</div>
+                    <div class="text-xs font-semibold mb-2 text-slate-500">🎬 動態視覺示範（相同推力，輕重物加速對比）</div>
                     <canvas id="newtonCanvas" class="w-full h-36 bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700"></canvas>
                     <div class="flex justify-end gap-2 mt-2">
                         <button onclick="toggleNewtonAnimation()" class="text-xs bg-emerald-600 text-white px-3 py-1 rounded hover:bg-emerald-700">播放 / 暫停</button>
                         <button onclick="resetNewtonAnimation()" class="text-xs bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-1 rounded hover:bg-slate-300">重置賽跑</button>
                     </div>
                 </div>
-
-                <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4 mt-4">
+                <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4">
                     <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">💡 為什麼這樣推理？（推導過程）</h3>
                     <ol class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside leading-relaxed">
-                        <li><b>直覺觀察</b>：如動畫所示，給予相同的推力 $F$，<b>質量越輕（$m$ 小）的物體衝得越快（加速度 $a$ 大）</b>；質量越重則越難推動。</li>
-                        <li><b>正反比關係</b>：
-                            <br>• 推力越大，加速度越大 $\implies a \propto F$
-                            <br>• 質量越大，加速度越小 $\implies a \propto \frac{1}{m}$
-                        </li>
-                        <li><b>組合公式</b>：結合兩者得到 $a \propto \frac{F}{m}$，移項後就是著名的 $F = ma$。</li>
+                        <li><b>實驗正反比關係</b>：推力越強加速度越大 ($a \propto F$)；物體越重越難加速 ($a \propto \frac{1}{m}$)。</li>
+                        <li><b>組合關係</b>：$a \propto \frac{F}{m} \implies F \propto ma$。</li>
+                        <li><b>定義單位</b>：將 $1\text{ N}$ 定義為使 $1\text{ kg}$ 產生 $1\text{ m/s}^2$ 加速度所需的力 $\implies F = ma$。</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- 5. 萬有引力 -->
+            <div class="card newton bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex justify-between items-start mb-3">
+                    <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-md">牛頓定律與萬有引力</span>
+                    <span class="text-xs text-slate-400">公式 05</span>
+                </div>
+                <h2 class="text-lg font-bold mb-2">萬有引力定律</h2>
+                <div class="my-4 py-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-center border border-slate-100 dark:border-slate-800">
+                    $$F = G \frac{m_1 m_2}{r^2}$$
+                </div>
+                <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-4 bg-slate-50/50 dark:bg-slate-900/30 p-3 rounded-lg">
+                    <p><b class="text-slate-800 dark:text-slate-200">$G$</b>：萬有引力常數 ($6.67 \times 10^{-11} \text{ N}\cdot\text{m}^2/\text{kg}^2$)</p>
+                    <p><b class="text-slate-800 dark:text-slate-200">$m_1, m_2$</b>：兩物體質量 (kg) ｜ <b class="text-slate-800 dark:text-slate-200">$r$</b>：球心距離 (m)</p>
+                </div>
+                <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4">
+                    <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">💡 為什麼這樣推理？（推導過程）</h3>
+                    <ol class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside leading-relaxed">
+                        <li><b>開普勒第三定律與圓周運動結合</b>：行星繞日向心力 $F = m \frac{v^2}{r} = m \frac{4\pi^2 r}{T^2}$。</li>
+                        <li><b>代入開普勒三式</b>：$\frac{T^2}{r^3} = K \implies T^2 = K r^3$，代回得 $F = \frac{4\pi^2 m}{K r^2}$，即引力與距離平方成反比 ($F \propto \frac{1}{r^2}$)。</li>
+                        <li><b>牛頓第三定律對稱性</b>：太陽對行星有引力，行星對太陽也有作用力，故引力必須同時與兩物體質量乘積成正比 $\implies F = G \frac{m_1 m_2}{r^2}$。</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- 6. 功與動能定理 -->
+            <div class="card energy bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex justify-between items-start mb-3">
+                    <span class="text-xs font-semibold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2.5 py-1 rounded-md">功、能量與動量</span>
+                    <span class="text-xs text-slate-400">公式 06</span>
+                </div>
+                <h2 class="text-lg font-bold mb-2">合力作功與動能定理</h2>
+                <div class="my-4 py-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-center border border-slate-100 dark:border-slate-800">
+                    $$W_{\text{net}} = \Delta E_k = \frac{1}{2}m v^2 - \frac{1}{2}m v_0^2$$
+                </div>
+                <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-4 bg-slate-50/50 dark:bg-slate-900/30 p-3 rounded-lg">
+                    <p><b class="text-slate-800 dark:text-slate-200">$W_{\text{net}}$</b>：合力作功 (焦耳 J) ｜ <b class="text-slate-800 dark:text-slate-200">$E_k$</b>：動能 (J)</p>
+                </div>
+                <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4">
+                    <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">💡 為什麼這樣推理？（推導過程）</h3>
+                    <ol class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside leading-relaxed">
+                        <li><b>功的定義</b>：$W = F \cdot x = (ma) x$。</li>
+                        <li><b>代入運動學無時間公式</b>：$v^2 = v_0^2 + 2ax \implies ax = \frac{v^2 - v_0^2}{2}$。</li>
+                        <li><b>替換整理</b>：$W = m \left(\frac{v^2 - v_0^2}{2}\right) = \frac{1}{2}m v^2 - \frac{1}{2}m v_0^2$。「外力作功的代價，全換成了物體動能的改變」。</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- 7. 動量守恆 -->
+            <div class="card energy bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex justify-between items-start mb-3">
+                    <span class="text-xs font-semibold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2.5 py-1 rounded-md">功、能量與動量</span>
+                    <span class="text-xs text-slate-400">公式 07</span>
+                </div>
+                <h2 class="text-lg font-bold mb-2">動量守恆定律</h2>
+                <div class="my-4 py-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-center border border-slate-100 dark:border-slate-800">
+                    $$m_1 v_1 + m_2 v_2 = m_1 v_1' + m_2 v_2'$$
+                </div>
+                <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-4 bg-slate-50/50 dark:bg-slate-900/30 p-3 rounded-lg">
+                    <p><b class="text-slate-800 dark:text-slate-200">$p = mv$</b>：動量 (kg·m/s) ｜ <b class="text-slate-800 dark:text-slate-200">$v_1', v_2'$</b>：碰撞後速度</p>
+                </div>
+                <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4">
+                    <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">💡 為什麼這樣推理？（推導過程）</h3>
+                    <ol class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside leading-relaxed">
+                        <li><b>牛頓第三定律（作用力與反作用力）</b>：碰撞時兩物體互施力 $F_{12} = -F_{21}$，作用時間相同 $t$。</li>
+                        <li><b>衝量等於動量變化</b>：$F_{12} t = \Delta p_1$ 且 $F_{21} t = \Delta p_2 \implies \Delta p_1 + \Delta p_2 = 0$。</li>
+                        <li><b>結論</b>：系統不受外力時，系統總動量保持不變（碰撞前後總動量相等）。</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- 8. 熱學：理想氣體方程式 -->
+            <div class="card thermal bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex justify-between items-start mb-3">
+                    <span class="text-xs font-semibold text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/60 px-2.5 py-1 rounded-md">熱學與氣體</span>
+                    <span class="text-xs text-slate-400">公式 08</span>
+                </div>
+                <h2 class="text-lg font-bold mb-2">理想氣體狀態方程式</h2>
+                <div class="my-4 py-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-center border border-slate-100 dark:border-slate-800">
+                    $$PV = nRT = N k_B T$$
+                </div>
+                <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-4 bg-slate-50/50 dark:bg-slate-900/30 p-3 rounded-lg">
+                    <p><b class="text-slate-800 dark:text-slate-200">$P$</b>：壓力 (Pa) ｜ <b class="text-slate-800 dark:text-slate-200">$V$</b>：體積 ($\text{m}^3$) ｜ <b class="text-slate-800 dark:text-slate-200">$n$</b>：莫耳數</p>
+                    <p><b class="text-slate-800 dark:text-slate-200">$R$</b>：氣體常數 ($8.314 \text{ J/mol}\cdot\text{K}$) ｜ <b class="text-slate-800 dark:text-slate-200">$T$</b>：絕對溫度 (K)</p>
+                </div>
+                <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4">
+                    <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">💡 為什麼這樣推理？（推導過程）</h3>
+                    <ol class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside leading-relaxed">
+                        <li><b>波以耳定律</b>：定溫下，壓力與體積成反比 ($P \propto \frac{1}{V}$)。</li>
+                        <li><b>查理-蓋呂薩克定律</b>：定壓下，體積與絕對溫度成正比 ($V \propto T$)。</li>
+                        <li><b>亞佛加厥定律</b>：同溫同壓下，體積與分子數莫耳數成正比 ($V \propto n$)。結合三者得 $PV \propto nT \implies PV = nRT$。</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- 9. 波動與光學：折射定律 -->
+            <div class="card wave bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex justify-between items-start mb-3">
+                    <span class="text-xs font-semibold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 px-2.5 py-1 rounded-md">波動與光學</span>
+                    <span class="text-xs text-slate-400">公式 09</span>
+                </div>
+                <h2 class="text-lg font-bold mb-2">斯乃爾折射定律 (Snell's Law)</h2>
+                <div class="my-4 py-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-center border border-slate-100 dark:border-slate-800">
+                    $$n_1 \sin\theta_1 = n_2 \sin\theta_2$$
+                </div>
+                <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-4 bg-slate-50/50 dark:bg-slate-900/30 p-3 rounded-lg">
+                    <p><b class="text-slate-800 dark:text-slate-200">$n_1, n_2$</b>：兩介質折射率 ｜ <b class="text-slate-800 dark:text-slate-200">$\theta_1, \theta_2$</b>：入射角與折射角 (與法線夾角)</p>
+                </div>
+                <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4">
+                    <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">💡 為什麼這樣推理？（推導過程）</h3>
+                    <ol class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside leading-relaxed">
+                        <li><b>惠更斯原理</b>：光前進時波前上的每一點都是新的球面波波源。</li>
+                        <li><b>波速與介質有關</b>：當光從光疏介質進入光密介質，波速變慢 ($v = \frac{c}{n}$)，但頻率 $f$ 不變 $\implies$ 波長 $\lambda$ 縮短。</li>
+                        <li><b>幾何幾何證明</b>：根據波前在介質交界處的幾何關係可得 $\frac{\sin\theta_1}{\sin\theta_2} = \frac{v_1}{v_2} = \frac{n_2}{n_1} \implies n_1 \sin\theta_1 = n_2 \sin\theta_2$。</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- 10. 靜電學：庫侖定律 -->
+            <div class="card electro bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex justify-between items-start mb-3">
+                    <span class="text-xs font-semibold text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-cyan-950/60 px-2.5 py-1 rounded-md">靜電與電路</span>
+                    <span class="text-xs text-slate-400">公式 10</span>
+                </div>
+                <h2 class="text-lg font-bold mb-2">庫侖靜電力定律</h2>
+                <div class="my-4 py-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-center border border-slate-100 dark:border-slate-800">
+                    $$F = k \frac{|q_1 q_2|}{r^2}$$
+                </div>
+                <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-4 bg-slate-50/50 dark:bg-slate-900/30 p-3 rounded-lg">
+                    <p><b class="text-slate-800 dark:text-slate-200">$k$</b>：靜電力常數 ($9.0 \times 10^9 \text{ N}\cdot\text{m}^2/\text{C}^2$)</p>
+                    <p><b class="text-slate-800 dark:text-slate-200">$q_1, q_2$</b>：電荷量 (庫侖 C) ｜ <b class="text-slate-800 dark:text-slate-200">$r$</b>：電荷間距離 (m)</p>
+                </div>
+                <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4">
+                    <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">💡 為什麼這樣推理？（推導過程）</h3>
+                    <ol class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside leading-relaxed">
+                        <li><b>扭秤實驗量測</b>：庫侖利用精密扭秤實驗發現，兩帶電體間靜電力與帶電量乘積成正比 ($F \propto \vert{}q_1 q_2\vert{}$)。</li>
+                        <li><b>球面擴散幾何</b>：電力線由點電荷向外三維球形擴散，球表面積 $A = 4\pi r^2$，故電力強度與距離平方成反比 ($F \propto \frac{1}{r^2}$)。</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- 11. 電磁學：法拉第電磁感應 -->
+            <div class="card magnetic bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex justify-between items-start mb-3">
+                    <span class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2.5 py-1 rounded-md">電磁學</span>
+                    <span class="text-xs text-slate-400">公式 11</span>
+                </div>
+                <h2 class="text-lg font-bold mb-2">法拉第電磁感應與冷次定律</h2>
+                <div class="my-4 py-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-center border border-slate-100 dark:border-slate-800">
+                    $$\mathcal{E} = -N \frac{\Delta \Phi_B}{\Delta t}$$
+                </div>
+                <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-4 bg-slate-50/50 dark:bg-slate-900/30 p-3 rounded-lg">
+                    <p><b class="text-slate-800 dark:text-slate-200">$\mathcal{E}$</b>：感應電動勢 (伏特 V) ｜ <b class="text-slate-800 dark:text-slate-200">$\Phi_B = B A$</b>：磁通量 (韋伯 Wb)</p>
+                    <p><b class="text-slate-800 dark:text-slate-200">$N$</b>：線圈匝數 ｜ 負號<b>「$-$」</b>：代表冷次定律（阻礙磁通量變化）</p>
+                </div>
+                <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4">
+                    <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">💡 為什麼這樣推理？（推導過程）</h3>
+                    <ol class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside leading-relaxed">
+                        <li><b>磁生電現象</b>：穿過線圈的「磁力線數量（磁通量 $\Phi_B$）」發生改變時，線圈就會產生電流。</li>
+                        <li><b>感應強度</b>：磁通量變化越快（$\frac{\Delta \Phi_B}{\Delta t}$ 越大），產生的感應電壓越強。</li>
+                        <li><b>能量守恆 (負號)</b>：感應電流產生的新磁場方向**必與原磁通量變化方向相反**（否則能量會無中生有暴增，違背能量守恆）。</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- 12. 近代物理：光電效應 -->
+            <div class="card modern bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex justify-between items-start mb-3">
+                    <span class="text-xs font-semibold text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950/60 px-2.5 py-1 rounded-md">近代物理</span>
+                    <span class="text-xs text-slate-400">公式 12</span>
+                </div>
+                <h2 class="text-lg font-bold mb-2">愛因斯坦光電效應方程式</h2>
+                <div class="my-4 py-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-center border border-slate-100 dark:border-slate-800">
+                    $$E_k = hf - W$$
+                </div>
+                <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-4 bg-slate-50/50 dark:bg-slate-900/30 p-3 rounded-lg">
+                    <p><b class="text-slate-800 dark:text-slate-200">$hf$</b>：入射光子能量 ｜ <b class="text-slate-800 dark:text-slate-200">$h$</b>：普朗克常數 ($6.63 \times 10^{-34} \text{ J}\cdot\text{s}$)</p>
+                    <p><b class="text-slate-800 dark:text-slate-200">$W$</b>：金屬功函數 (脫離所需最小能量) ｜ <b class="text-slate-800 dark:text-slate-200">$E_k$</b>：光電子最大初動能</p>
+                </div>
+                <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4">
+                    <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">💡 為什麼這樣推理？（推導過程）</h3>
+                    <ol class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside leading-relaxed">
+                        <li><b>波動說困境</b>：傳統波動說認為光強越強電子動能應越大，但實驗證明電子動能**只與光的頻率 $f$ 有關**。</li>
+                        <li><b>光子碰撞假設</b>：愛因斯坦提出光是一顆顆能量為 $E = hf$ 的「光子」。一個光子將全部能量傳給一顆電子。</li>
+                        <li><b>能量守恆</b>：電子獲得能量 $hf$，扣除逃離金屬表面所需成本 $W$（功函數），剩下的能量就變成電子的最大動能 $E_k = hf - W$。</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- 13. 近代物理：德布羅意物質波 -->
+            <div class="card modern bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex justify-between items-start mb-3">
+                    <span class="text-xs font-semibold text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950/60 px-2.5 py-1 rounded-md">近代物理</span>
+                    <span class="text-xs text-slate-400">公式 13</span>
+                </div>
+                <h2 class="text-lg font-bold mb-2">德布羅意物質波波長</h2>
+                <div class="my-4 py-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-center border border-slate-100 dark:border-slate-800">
+                    $$\lambda = \frac{h}{p} = \frac{h}{mv}$$
+                </div>
+                <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-4 bg-slate-50/50 dark:bg-slate-900/30 p-3 rounded-lg">
+                    <p><b class="text-slate-800 dark:text-slate-200">$\lambda$</b>：物質波波長 (m) ｜ <b class="text-slate-800 dark:text-slate-200">$p = mv$</b>：物體動量 (kg·m/s)</p>
+                </div>
+                <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4">
+                    <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">💡 為什麼這樣推理？（推導過程）</h3>
+                    <ol class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside leading-relaxed">
+                        <li><b>對稱性大膽假設</b>：既然原本被認為是「波」的光具有「粒子性（動量 $p = \frac{h}{\lambda}$）」，那麼實體「粒子（如電子）」也應該具有「波動性」。</li>
+                        <li><b>移項整理</b>：將光子動量公式移項 $\implies \lambda = \frac{h}{p}$。戴維森-革末的電子干涉實驗證實了這個假說！</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- 14. 近代物理：質能互換 -->
+            <div class="card modern bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex justify-between items-start mb-3">
+                    <span class="text-xs font-semibold text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950/60 px-2.5 py-1 rounded-md">近代物理</span>
+                    <span class="text-xs text-slate-400">公式 14</span>
+                </div>
+                <h2 class="text-lg font-bold mb-2">愛因斯坦質能相當性</h2>
+                <div class="my-4 py-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-center border border-slate-100 dark:border-slate-800">
+                    $$E = m c^2$$
+                </div>
+                <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-4 bg-slate-50/50 dark:bg-slate-900/30 p-3 rounded-lg">
+                    <p><b class="text-slate-800 dark:text-slate-200">$E$</b>：相當之能量 (J) ｜ <b class="text-slate-800 dark:text-slate-200">$m$</b>：質量 (kg)</p>
+                    <p><b class="text-slate-800 dark:text-slate-200">$c$</b>：真空光速 ($3 \times 10^8 \text{ m/s}$)</p>
+                </div>
+                <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4">
+                    <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">💡 為什麼這樣推理？（推導過程）</h3>
+                    <ol class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside leading-relaxed">
+                        <li><b>狹義相對論結論</b>：質量並非恆定不變，質量與能量本質上是同一種東西的不同型態。</li>
+                        <li><b>質量虧損與核反應</b>：在核分裂（如原子彈）或核融合（如太陽發光）中，反應後總質量減少 $\Delta m$，消失的質量全轉化為巨大的能量 $\Delta E = \Delta m \cdot c^2$。</li>
                     </ol>
                 </div>
             </div>
@@ -166,9 +407,8 @@
         </div>
     </main>
 
-    <!-- JS 邏輯 -->
+    <!-- JS 動畫與排版邏輯 -->
     <script>
-        // 頁面完全載入後初始化繪圖與公式
         window.addEventListener('load', function() {
             renderMathInElement(document.body, {
                 delimiters: [
@@ -181,14 +421,13 @@
             initNewtonAnimation();
         });
 
-        // 視窗大小改變時重新設定 Canvas
         window.addEventListener('resize', function() {
             resetCarAnimation();
             resetVTAnimation();
             resetNewtonAnimation();
         });
 
-        // 深色模式切換
+        // 深色模式
         const themeToggleBtn = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         themeToggleBtn.addEventListener('click', () => {
@@ -205,7 +444,7 @@
             resetNewtonAnimation();
         });
 
-        // 分類篩選
+        // 卡片分類篩選器
         function filterCards(category, btnElement) {
             const cards = document.querySelectorAll('.card');
             const buttons = document.querySelectorAll('.filter-btn');
@@ -229,7 +468,7 @@
             });
         }
 
-        // --- 動態動畫 1: 小車加速 ---
+        // --- 動畫 1: 等加速度車輛 ---
         let carX = 10, carV = 0, carA = 0.12, carAnimId = null, isCarRunning = false;
         function initCarAnimation() {
             const canvas = document.getElementById('carCanvas');
@@ -254,13 +493,8 @@
             ctx.fillText(`加速度 a: 1.2 m/s²`, 130, 22);
         }
         function toggleCarAnimation() {
-            if (isCarRunning) { 
-                cancelAnimationFrame(carAnimId); 
-                isCarRunning = false; 
-            } else { 
-                isCarRunning = true; 
-                runCarAnimation(); 
-            }
+            if (isCarRunning) { cancelAnimationFrame(carAnimId); isCarRunning = false; }
+            else { isCarRunning = true; runCarAnimation(); }
         }
         function runCarAnimation() {
             if (!isCarRunning) return;
@@ -274,7 +508,7 @@
             cancelAnimationFrame(carAnimId); isCarRunning = false; carX = 10; carV = 0; initCarAnimation();
         }
 
-        // --- 動態動畫 2: v-t 圖面積累積 ---
+        // --- 動畫 2: v-t 面積累積 ---
         let vtProgress = 0, vtAnimId = null, isVTRunning = false;
         function initVTAnimation() {
             const canvas = document.getElementById('vtCanvas');
@@ -299,11 +533,9 @@
             const finalV = 30 + (canvas.height - 70) * (vtProgress / 100);
 
             if (vtProgress > 0) {
-                // 矩形
                 ctx.fillStyle = isDark ? 'rgba(59, 130, 246, 0.4)' : 'rgba(59, 130, 246, 0.25)';
                 ctx.fillRect(startX, startY - initialV, endX - startX, initialV);
 
-                // 三角形
                 ctx.fillStyle = isDark ? 'rgba(16, 185, 129, 0.4)' : 'rgba(16, 185, 129, 0.25)';
                 ctx.beginPath();
                 ctx.moveTo(startX, startY - initialV);
@@ -311,7 +543,6 @@
                 ctx.lineTo(endX, startY - initialV);
                 ctx.fill();
 
-                // 斜線
                 ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 3;
                 ctx.beginPath(); ctx.moveTo(startX, startY - initialV); ctx.lineTo(endX, startY - finalV); ctx.stroke();
             }
@@ -331,13 +562,8 @@
             }
         }
         function toggleVTAnimation() {
-            if (isVTRunning) { 
-                cancelAnimationFrame(vtAnimId); 
-                isVTRunning = false; 
-            } else { 
-                isVTRunning = true; 
-                runVTAnimation(); 
-            }
+            if (isVTRunning) { cancelAnimationFrame(vtAnimId); isVTRunning = false; }
+            else { isVTRunning = true; runVTAnimation(); }
         }
         function runVTAnimation() {
             if (!isVTRunning) return;
@@ -345,17 +571,14 @@
             vtProgress += 0.8;
             if (vtProgress > 100) vtProgress = 100;
             drawVTFrame(canvas.getContext('2d'), canvas);
-            if (vtProgress < 100) { 
-                vtAnimId = requestAnimationFrame(runVTAnimation); 
-            } else { 
-                isVTRunning = false; 
-            }
+            if (vtProgress < 100) { vtAnimId = requestAnimationFrame(runVTAnimation); }
+            else { isVTRunning = false; }
         }
         function resetVTAnimation() {
             cancelAnimationFrame(vtAnimId); isVTRunning = false; vtProgress = 0; initVTAnimation();
         }
 
-        // --- 動態動畫 3: 牛頓第二定律 質量賽車 ---
+        // --- 動態 3: 牛頓第二定律對比 ---
         let nX1 = 10, nX2 = 10, nV1 = 0, nV2 = 0, newtonAnimId = null, isNewtonRunning = false;
         const mA = 2, mB = 6, F = 10;
         const aA = F / mA * 0.03, aB = F / mB * 0.03;
@@ -376,18 +599,15 @@
             ctx.beginPath(); ctx.moveTo(0, 55); ctx.lineTo(canvas.width, 55); ctx.stroke();
             ctx.beginPath(); ctx.moveTo(0, 115); ctx.lineTo(canvas.width, 115); ctx.stroke();
 
-            // 輕物
             ctx.fillStyle = '#10b981'; ctx.fillRect(nX1, 30, 25, 25);
-            // 重物
             ctx.fillStyle = '#f59e0b'; ctx.fillRect(nX2, 80, 35, 35);
 
-            // 箭頭
             drawArrow(ctx, nX1 + 25, 42.5, 30, '#ef4444');
             drawArrow(ctx, nX2 + 35, 97.5, 30, '#ef4444');
 
             ctx.fillStyle = textColor; ctx.font = '11px sans-serif';
-            ctx.fillText(`輕物 m = 2kg ｜ F = 10N ｜ 加速度 a = 5.0 m/s²`, 10, 20);
-            ctx.fillText(`重物 m = 6kg ｜ F = 10N ｜ 加速度 a = 1.7 m/s²`, 10, 72);
+            ctx.fillText(`輕物 m = 2kg ｜ F = 10N ｜ a = 5.0 m/s²`, 10, 20);
+            ctx.fillText(`重物 m = 6kg ｜ F = 10N ｜ a = 1.7 m/s²`, 10, 72);
         }
         function drawArrow(ctx, fromx, fromy, length, color) {
             ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 2;
@@ -395,13 +615,8 @@
             ctx.beginPath(); ctx.moveTo(fromx + length, fromy); ctx.lineTo(fromx + length - 5, fromy - 4); ctx.lineTo(fromx + length - 5, fromy + 4); ctx.fill();
         }
         function toggleNewtonAnimation() {
-            if (isNewtonRunning) { 
-                cancelAnimationFrame(newtonAnimId); 
-                isNewtonRunning = false; 
-            } else { 
-                isNewtonRunning = true; 
-                runNewtonAnimation(); 
-            }
+            if (isNewtonRunning) { cancelAnimationFrame(newtonAnimId); isNewtonRunning = false; }
+            else { isNewtonRunning = true; runNewtonAnimation(); }
         }
         function runNewtonAnimation() {
             if (!isNewtonRunning) return;
