@@ -4,20 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>物理公式庫 | Physics Formula Hub</title>
-    <!-- Tailwind CSS (樣式庫) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-        }
+        tailwind.config = { darkMode: 'class' };
     </script>
-    <!-- KaTeX (數學公式排版引擎) -->
+    <!-- KaTeX 數學排版 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
-    <style>
-        .katex-display { margin: 0.5em 0; }
-    </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen transition-colors duration-200">
 
@@ -26,12 +21,11 @@
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <div>
                 <h1 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    <span>⚛️</span> 物理公式庫 <span class="text-xs px-2 py-0.5 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-300 rounded-full font-normal">高中試作版</span>
+                    <span>⚛️</span> 物理公式庫 <span class="text-xs px-2 py-0.5 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-300 rounded-full font-normal">高中學習版</span>
                 </h1>
-                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">觀念推導 · 邏輯拆解 · 動態視覺圖解</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">觀念推導 · 邏輯拆解 · 動態視覺示範</p>
             </div>
             
-            <!-- 深色模式切換按鈕 -->
             <button id="themeToggle" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
                 <span id="themeIcon">🌙</span>
             </button>
@@ -41,60 +35,55 @@
     <!-- 主要內容區 -->
     <main class="max-w-6xl mx-auto px-4 py-8">
         
-        <!-- 分類標籤篩選器 -->
+        <!-- 分類標籤 -->
         <div class="flex flex-wrap gap-2 mb-8 border-b border-slate-200 dark:border-slate-700 pb-4">
             <button onclick="filterCards('all')" class="filter-btn active-btn px-4 py-1.5 rounded-full text-sm font-medium bg-blue-600 text-white shadow-sm transition-all">全部公式</button>
-            <button onclick="filterCards('motion')" class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all">直線運動</button>
-            <button onclick="filterCards('newton')" class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all">牛頓運動定律</button>
+            <button onclick="filterCards('motion')" class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 transition-all">直線運動</button>
+            <button onclick="filterCards('newton')" class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 transition-all">牛頓運動定律</button>
         </div>
 
         <!-- 卡片網格 -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
             <!-- 卡片 1：等加速度速度公式 -->
-            <div class="card motion bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+            <div class="card motion bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
                 <div class="flex justify-between items-start mb-3">
                     <span class="text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-md">直線運動</span>
                     <span class="text-xs text-slate-400">公式 01</span>
                 </div>
                 <h2 class="text-lg font-bold mb-2">速度與時間關係式</h2>
                 
-                <!-- 公式核心 -->
                 <div class="my-4 py-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-center border border-slate-100 dark:border-slate-800">
                     $$v = v_0 + at$$
                 </div>
 
-                <!-- 符號說明 -->
                 <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-4 bg-slate-50/50 dark:bg-slate-900/30 p-3 rounded-lg">
                     <p><b class="text-slate-800 dark:text-slate-200">$v$</b>：末速度 (m/s) ｜ <b class="text-slate-800 dark:text-slate-200">$v_0$</b>：初速度 (m/s)</p>
                     <p><b class="text-slate-800 dark:text-slate-200">$a$</b>：加速度 (m/s²) ｜ <b class="text-slate-800 dark:text-slate-200">$t$</b>：經過時間 (s)</p>
                 </div>
 
-                <!-- 動態圖解 -->
+                <!-- 動態圖解 1 -->
                 <div class="mb-4">
-                    <div class="text-xs font-semibold mb-1 text-slate-500">🎬 動態視覺示範</div>
-                    <canvas id="carCanvas" class="w-full h-28 bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700"></canvas>
+                    <div class="text-xs font-semibold mb-2 text-slate-500">🎬 動態視覺示範（等加速度運動）</div>
+                    <canvas id="carCanvas" class="w-full h-32 bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700"></canvas>
                     <div class="flex justify-end gap-2 mt-2">
-                        <button onclick="toggleCarAnimation()" id="carPlayBtn" class="text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">播放 / 暫停</button>
+                        <button onclick="toggleCarAnimation()" class="text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">播放 / 暫停</button>
                         <button onclick="resetCarAnimation()" class="text-xs bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-1 rounded hover:bg-slate-300">重置</button>
                     </div>
                 </div>
 
-                <!-- 公式推導 -->
                 <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4 mt-4">
-                    <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-1">
-                        💡 為什麼這樣推理？（推導過程）
-                    </h3>
+                    <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">💡 為什麼這樣推理？（推導過程）</h3>
                     <ol class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside leading-relaxed">
-                        <li><b>定義出發</b>：加速度 $a$ 的物理意義是「每秒鐘速度改變了多少」，即：$$a = \frac{\Delta v}{\Delta t}$$</li>
-                        <li><b>帶入變數</b>：經過時間 $\Delta t = t$，速度變化量 $\Delta v = v - v_0$。代入得：$$a = \frac{v - v_0}{t}$$</li>
-                        <li><b>移項整理</b>：兩邊同乘以 $t$ 得 $at = v - v_0$，把初速 $v_0$ 移到左邊，即得到最終公式：$$v = v_0 + at$$</li>
+                        <li><b>定義出發</b>：加速度 $a$ 的物理意義是「每秒鐘速度改變了多少」，即 $a = \frac{\Delta v}{\Delta t}$。</li>
+                        <li><b>帶入變數</b>：經過時間 $\Delta t = t$，速度變化量 $\Delta v = v - v_0$，代入得 $a = \frac{v - v_0}{t}$。</li>
+                        <li><b>移項整理</b>：兩邊同乘以 $t$ 得 $at = v - v_0$，把初速 $v_0$ 移到左邊，即得 $v = v_0 + at$。</li>
                     </ol>
                 </div>
             </div>
 
-            <!-- 卡片 2：等加速度位移公式 -->
-            <div class="card motion bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+            <!-- 卡片 2：等加速度位移公式 (已全新改版為動態累積圖) -->
+            <div class="card motion bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
                 <div class="flex justify-between items-start mb-3">
                     <span class="text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-md">直線運動</span>
                     <span class="text-xs text-slate-400">公式 02</span>
@@ -110,67 +99,65 @@
                     <p><b class="text-slate-800 dark:text-slate-200">$a$</b>：加速度 (m/s²) ｜ <b class="text-slate-800 dark:text-slate-200">$t$</b>：經過時間 (s)</p>
                 </div>
 
-                <!-- 圖解 -->
+                <!-- 動態圖解 2：v-t 動態累積面積 -->
                 <div class="mb-4">
-                    <div class="text-xs font-semibold mb-1 text-slate-500">📊 v-t 圖幾何面積拆解</div>
-                    <canvas id="vtCanvas" class="w-full h-28 bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700"></canvas>
+                    <div class="text-xs font-semibold mb-2 text-slate-500">🎬 動態視覺示範（v-t 圖面積 = 位移 x）</div>
+                    <canvas id="vtCanvas" class="w-full h-36 bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700"></canvas>
+                    <div class="flex justify-end gap-2 mt-2">
+                        <button onclick="toggleVTAnimation()" class="text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">播放 / 暫停</button>
+                        <button onclick="resetVTAnimation()" class="text-xs bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-1 rounded hover:bg-slate-300">重置</button>
+                    </div>
                 </div>
 
                 <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4 mt-4">
-                    <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-1">
-                        💡 為什麼這樣推理？（推導過程）
-                    </h3>
+                    <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">💡 為什麼這樣推理？（推導過程）</h3>
                     <ol class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside leading-relaxed">
-                        <li><b>幾何意義</b>：在 $v-t$（速度-時間）圖形下方的<b>面積</b>就是物體的位移 $x$。</li>
-                        <li><b>梯形面積公式</b>：$v-t$ 圖包圍出一個梯形，其面積為：$$x = \frac{(v_0 + v) \cdot t}{2}$$</li>
-                        <li><b>代入速度公式</b>：將上一式 $v = v_0 + at$ 代入 $v$：$$x = \frac{(v_0 + (v_0 + at)) \cdot t}{2} = \frac{(2v_0 + at)t}{2}$$</li>
-                        <li><b>拆開展開</b>：拆成兩項分別除以 2，即得：$$x = v_0 t + \frac{1}{2}at^2$$（矩形面積 $v_0 t$ + 三角形面積 $\frac{1}{2}at^2$）</li>
+                        <li><b>幾何意義</b>：在 $v-t$（速度-時間）圖形下方的<b>總面積</b>，就是物體移動的<b>總位移 $x$</b>。</li>
+                        <li><b>拆成兩個圖形</b>：把這個梯形面積切成兩部分：
+                            <br>• 下方<b>藍色矩形</b>：初速造成的位移 $= v_0 \times t$
+                            <br>• 上方<b>綠色三角形</b>：加速度造成的額外位移 $= \frac{1}{2} \times \text{底} \times \text{高} = \frac{1}{2} t (at) = \frac{1}{2}at^2$
+                        </li>
+                        <li><b>相加即得公式</b>：總位移 $x = \text{矩形面積} + \text{三角形面積} = v_0 t + \frac{1}{2}at^2$。</li>
                     </ol>
                 </div>
             </div>
 
-            <!-- 卡片 3：牛頓第二運動定律 -->
-            <div class="card newton bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+            <!-- 卡片 3：牛頓第二運動定律 (已改版為兩物體對比實驗動畫) -->
+            <div class="card newton bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
                 <div class="flex justify-between items-start mb-3">
                     <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-md">牛頓運動定律</span>
                     <span class="text-xs text-slate-400">公式 03</span>
                 </div>
-                <h2 class="text-lg font-bold mb-2">牛頓第二運動定律（運動定律）</h2>
+                <h2 class="text-lg font-bold mb-2">牛頓第二運動定律</h2>
                 
                 <div class="my-4 py-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-center border border-slate-100 dark:border-slate-800">
                     $$F = ma$$
                 </div>
 
                 <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-4 bg-slate-50/50 dark:bg-slate-900/30 p-3 rounded-lg">
-                    <p><b class="text-slate-800 dark:text-slate-200">$F$</b>：外力合力 (N 牛頓) ｜ <b class="text-slate-800 dark:text-slate-200">$m$</b>：物體質量 (kg)</p>
+                    <p><b class="text-slate-800 dark:text-slate-200">$F$</b>：外力合力 (N) ｜ <b class="text-slate-800 dark:text-slate-200">$m$</b>：物體質量 (kg)</p>
                     <p><b class="text-slate-800 dark:text-slate-200">$a$</b>：獲得的加速度 (m/s²)</p>
                 </div>
 
-                <!-- 互動圖解模擬 -->
+                <!-- 動態圖解 3：質量對比賽車動畫 -->
                 <div class="mb-4">
-                    <div class="text-xs font-semibold mb-1 text-slate-500">🎮 互動拉桿模擬 (調整 F 與 m)</div>
-                    <canvas id="newtonCanvas" class="w-full h-24 bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700"></canvas>
-                    <div class="grid grid-cols-2 gap-3 mt-2 text-xs">
-                        <div>
-                            <label class="block text-slate-500">外力 F: <span id="fVal" class="font-bold">10</span> N</label>
-                            <input type="range" id="fInput" min="2" max="30" value="10" class="w-full" oninput="updateNewtonSim()">
-                        </div>
-                        <div>
-                            <label class="block text-slate-500">質量 m: <span id="mVal" class="font-bold">2</span> kg</label>
-                            <input type="range" id="mInput" min="1" max="10" value="2" class="w-full" oninput="updateNewtonSim()">
-                        </div>
+                    <div class="text-xs font-semibold mb-2 text-slate-500">🎬 動態視覺示範（相同推力 F = 10N，不同質量比較）</div>
+                    <canvas id="newtonCanvas" class="w-full h-36 bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700"></canvas>
+                    <div class="flex justify-end gap-2 mt-2">
+                        <button onclick="toggleNewtonAnimation()" class="text-xs bg-emerald-600 text-white px-3 py-1 rounded hover:bg-emerald-700">播放 / 暫停</button>
+                        <button onclick="resetNewtonAnimation()" class="text-xs bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-1 rounded hover:bg-slate-300">重置賽跑</button>
                     </div>
                 </div>
 
                 <div class="border-t border-slate-100 dark:border-slate-700/60 pt-4 mt-4">
-                    <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-1">
-                        💡 為什麼這樣推理？（推導過程）
-                    </h3>
+                    <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">💡 為什麼這樣推理？（推導過程）</h3>
                     <ol class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-decimal list-inside leading-relaxed">
-                        <li><b>實驗觀察一</b>：同一個物體（$m$ 固定），受到的推力 $F$ 越大，速度變化越快，加速度越大 $\implies a \propto F$。</li>
-                        <li><b>實驗觀察二</b>：施加相同的力 $F$，物體越重（$m$ 越大），越難改變其運動狀態，加速度越小 $\implies a \propto \frac{1}{m}$。</li>
-                        <li><b>綜合正反比關係</b>：結合兩者可得 $a \propto \frac{F}{m}$，換句話說就是 $F \propto ma$。</li>
-                        <li><b>單位定義</b>：物理學將 1 牛頓（N）定義為「使 1kg 物體產生 $1\text{ m/s}^2$ 加速度所需的力」，因此比例常數定為 1，得到簡潔的 $F = ma$。</li>
+                        <li><b>直覺觀察</b>：如動畫所示，給予相同的推力 $F$，<b>質量越輕（$m$ 小）的物體衝得越快（加速度 $a$ 大）</b>；質量越重則越難推動。</li>
+                        <li><b>正反比關係</b>：
+                            <br>• 推力越大，加速度越大 $\implies a \propto F$
+                            <br>• 質量越大，加速度越小 $\implies a \propto \frac{1}{m}$
+                        </li>
+                        <li><b>組合公式</b>：結合兩者得到 $a \propto \frac{F}{m}$，移項後就是著名的 $F = ma$。</li>
                     </ol>
                 </div>
             </div>
@@ -178,9 +165,7 @@
         </div>
     </main>
 
-    <!-- JavaScript 腳本區 (邏輯與繪圖) -->
     <script>
-        // 1. 初始化 KaTeX 自動渲染
         document.addEventListener("DOMContentLoaded", function() {
             renderMathInElement(document.body, {
                 delimiters: [
@@ -189,11 +174,11 @@
                 ]
             });
             initCarAnimation();
-            drawVTGraph();
-            updateNewtonSim();
+            initVTAnimation();
+            initNewtonAnimation();
         });
 
-        // 2. 深色模式切換
+        // 深色模式切換
         const themeToggleBtn = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         themeToggleBtn.addEventListener('click', () => {
@@ -205,12 +190,12 @@
                 html.classList.add('dark');
                 themeIcon.textContent = '☀️';
             }
-            // 重新繪製 canvas 確保顏色契合主題
-            drawVTGraph();
-            updateNewtonSim();
+            resetCarAnimation();
+            resetVTAnimation();
+            resetNewtonAnimation();
         });
 
-        // 3. 卡片篩選功能
+        // 分類篩選
         function filterCards(category) {
             const cards = document.querySelectorAll('.card');
             const buttons = document.querySelectorAll('.filter-btn');
@@ -232,171 +217,172 @@
             });
         }
 
-        // --- 動態視覺 1: 小車加速運動 ---
-        let carX = 10;
-        let carV = 0;
-        let carA = 0.15;
-        let carAnimId = null;
-        let isCarRunning = false;
-
+        // --- 動態動畫 1: 小車加速 ---
+        let carX = 10, carV = 0, carA = 0.12, carAnimId = null, isCarRunning = false;
         function initCarAnimation() {
             const canvas = document.getElementById('carCanvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-            drawCarFrame(ctx, canvas);
+            if(!canvas) return;
+            canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight;
+            drawCarFrame(canvas.getContext('2d'), canvas);
         }
-
         function drawCarFrame(ctx, canvas) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            // 路面
-            ctx.strokeStyle = '#94a3b8';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(0, canvas.height - 20);
-            ctx.lineTo(canvas.width, canvas.height - 20);
-            ctx.stroke();
-
-            // 小車
-            ctx.fillStyle = '#3b82f6';
-            ctx.fillRect(carX, canvas.height - 40, 30, 15);
-            // 車輪
-            ctx.fillStyle = '#1e293b';
-            ctx.beginPath();
-            ctx.arc(carX + 7, canvas.height - 20, 4, 0, Math.PI * 2);
-            ctx.arc(carX + 23, canvas.height - 20, 4, 0, Math.PI * 2);
-            ctx.fill();
-
-            // 數據文字
-            ctx.fillStyle = document.documentElement.classList.contains('dark') ? '#cbd5e1' : '#334155';
-            ctx.font = '11px sans-serif';
-            ctx.fillText(`速度 v: ${(carV*10).toFixed(1)} m/s`, 10, 20);
-            ctx.fillText(`加速度 a: 1.5 m/s²`, 120, 20);
-        }
-
-        function toggleCarAnimation() {
-            if (isCarRunning) {
-                cancelAnimationFrame(carAnimId);
-                isCarRunning = false;
-            } else {
-                isCarRunning = true;
-                runCarAnimation();
-            }
-        }
-
-        function runCarAnimation() {
-            const canvas = document.getElementById('carCanvas');
-            const ctx = canvas.getContext('2d');
-            carV += carA;
-            carX += carV;
-
-            if (carX > canvas.width - 40) {
-                carX = 10;
-                carV = 0;
-            }
-
-            drawCarFrame(ctx, canvas);
-            carAnimId = requestAnimationFrame(runCarAnimation);
-        }
-
-        function resetCarAnimation() {
-            cancelAnimationFrame(carAnimId);
-            isCarRunning = false;
-            carX = 10;
-            carV = 0;
-            initCarAnimation();
-        }
-
-        // --- 動態視覺 2: v-t 圖幾何面積 ---
-        function drawVTGraph() {
-            const canvas = document.getElementById('vtCanvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(0, canvas.height - 25); ctx.lineTo(canvas.width, canvas.height - 25); ctx.stroke();
+            
+            ctx.fillStyle = '#3b82f6'; ctx.fillRect(carX, canvas.height - 45, 35, 18);
+            ctx.fillStyle = '#1e293b'; ctx.beginPath();
+            ctx.arc(carX + 8, canvas.height - 25, 5, 0, Math.PI * 2);
+            ctx.arc(carX + 27, canvas.height - 25, 5, 0, Math.PI * 2); ctx.fill();
 
             const isDark = document.documentElement.classList.contains('dark');
-            const textColor = isDark ? '#94a3b8' : '#475569';
-
-            // 座標軸
-            ctx.strokeStyle = textColor;
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(30, 15); ctx.lineTo(30, canvas.height - 20); ctx.lineTo(canvas.width - 15, canvas.height - 20);
-            ctx.stroke();
-
-            // 梯形面積 (矩形 v0*t + 三角形 1/2*a*t^2)
-            ctx.fillStyle = isDark ? 'rgba(59, 130, 246, 0.25)' : 'rgba(59, 130, 246, 0.15)';
-            ctx.fillRect(30, canvas.height - 45, 120, 25); // 矩形
-            
-            ctx.fillStyle = isDark ? 'rgba(16, 185, 129, 0.25)' : 'rgba(16, 185, 129, 0.15)';
-            ctx.beginPath();
-            ctx.moveTo(30, canvas.height - 45);
-            ctx.lineTo(150, canvas.height - 75);
-            ctx.lineTo(150, canvas.height - 45);
-            ctx.fill();
-
-            // v-t 斜線
-            ctx.strokeStyle = '#2563eb';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(30, canvas.height - 45);
-            ctx.lineTo(150, canvas.height - 75);
-            ctx.stroke();
-
-            // 標記文字
-            ctx.fillStyle = textColor;
-            ctx.font = '10px sans-serif';
-            ctx.fillText('v0', 12, canvas.height - 42);
-            ctx.fillText('v', 15, canvas.height - 72);
-            ctx.fillText('t', 148, canvas.height - 5);
-            ctx.fillText('矩形: v₀t', 60, canvas.height - 28);
-            ctx.fillText('三角形: ½at²', 70, canvas.height - 55);
+            ctx.fillStyle = isDark ? '#cbd5e1' : '#334155'; ctx.font = '12px sans-serif';
+            ctx.fillText(`速度 v: ${(carV*10).toFixed(1)} m/s`, 12, 22);
+            ctx.fillText(`加速度 a: 1.2 m/s²`, 130, 22);
+        }
+        function toggleCarAnimation() {
+            if (isCarRunning) { cancelAnimationFrame(carAnimId); isCarRunning = false; }
+            else { isCarRunning = true; runCarAnimation(); }
+        }
+        function runCarAnimation() {
+            const canvas = document.getElementById('carCanvas');
+            carV += carA; carX += carV;
+            if (carX > canvas.width - 45) { carX = 10; carV = 0; }
+            drawCarFrame(canvas.getContext('2d'), canvas);
+            carAnimId = requestAnimationFrame(runCarAnimation);
+        }
+        function resetCarAnimation() {
+            cancelAnimationFrame(carAnimId); isCarRunning = false; carX = 10; carV = 0; initCarAnimation();
         }
 
-        // --- 動態視覺 3: 牛頓第二定律模擬 ---
-        let boxX = 20;
-        let boxV = 0;
-        let newtonAnimId = null;
-
-        function updateNewtonSim() {
-            const F = parseFloat(document.getElementById('fInput').value);
-            const m = parseFloat(document.getElementById('mInput').value);
-            document.getElementById('fVal').textContent = F;
-            document.getElementById('mVal').textContent = m;
-
-            const a = (F / m).toFixed(1);
-
-            const canvas = document.getElementById('newtonCanvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-
+        // --- 動態動畫 2: v-t 圖動態面積累積 ---
+        let vtProgress = 0, vtAnimId = null, isVTRunning = false;
+        function initVTAnimation() {
+            const canvas = document.getElementById('vtCanvas');
+            if(!canvas) return;
+            canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight;
+            drawVTFrame(canvas.getContext('2d'), canvas);
+        }
+        function drawVTFrame(ctx, canvas) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // 地面
-            ctx.strokeStyle = '#94a3b8';
-            ctx.lineWidth = 2;
-            ctx.beginPath(); ctx.moveTo(0, canvas.height - 15); ctx.lineTo(canvas.width, canvas.height - 15); ctx.stroke();
-
-            // 木塊 (質量越大的方塊越大)
-            const boxSize = 20 + m * 2.5;
-            ctx.fillStyle = '#10b981';
-            ctx.fillRect(boxX, canvas.height - 15 - boxSize, boxSize, boxSize);
-
-            // 外力箭號 (F 越大箭頭越長)
-            const arrowLen = F * 2.5;
-            ctx.strokeStyle = '#ef4444';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            ctx.moveTo(boxX + boxSize, canvas.height - 15 - boxSize/2);
-            ctx.lineTo(boxX + boxSize + arrowLen, canvas.height - 15 - boxSize/2);
+            const isDark = document.documentElement.classList.contains('dark');
+            const textColor = isDark ? '#cbd5e1' : '#334155';
+            
+            // 座標軸
+            ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); 
+            ctx.moveTo(35, 15); ctx.lineTo(35, canvas.height - 25); ctx.lineTo(canvas.width - 15, canvas.height - 25); 
             ctx.stroke();
 
-            // 計算結果文字
-            ctx.fillStyle = document.documentElement.classList.contains('dark') ? '#cbd5e1' : '#334155';
-            ctx.font = '11px sans-serif';
-            ctx.fillText(`加速度 a = F / m = ${a} m/s²`, 10, 20);
+            const startX = 35, startY = canvas.height - 25;
+            const endX = startX + (canvas.width - 70) * (vtProgress / 100);
+            const initialV = 30; // 初速高度
+            const finalV = 30 + (canvas.height - 70) * (vtProgress / 100); // 隨時間上升
+
+            if (vtProgress > 0) {
+                // 矩形面積 (v0 * t)
+                ctx.fillStyle = isDark ? 'rgba(59, 130, 246, 0.4)' : 'rgba(59, 130, 246, 0.25)';
+                ctx.fillRect(startX, startY - initialV, endX - startX, initialV);
+
+                // 三角形面積 (1/2 * a * t^2)
+                ctx.fillStyle = isDark ? 'rgba(16, 185, 129, 0.4)' : 'rgba(16, 185, 129, 0.25)';
+                ctx.beginPath();
+                ctx.moveTo(startX, startY - initialV);
+                ctx.lineTo(endX, startY - finalV);
+                ctx.lineTo(endX, startY - initialV);
+                ctx.fill();
+
+                // v-t 運動斜線
+                ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 3;
+                ctx.beginPath(); ctx.moveTo(startX, startY - initialV); ctx.lineTo(endX, startY - finalV); ctx.stroke();
+            }
+
+            // 標示文字
+            ctx.fillStyle = textColor; ctx.font = '11px sans-serif';
+            ctx.fillText('v (速度)', 5, 15);
+            ctx.fillText('t (時間)', canvas.width - 45, canvas.height - 8);
+            ctx.fillText('v₀ (初速)', 2, startY - initialV + 4);
+            
+            if (vtProgress > 20) {
+                ctx.fillStyle = isDark ? '#93c5fd' : '#1d4ed8';
+                ctx.fillText('矩形: v₀t', startX + 10, startY - 10);
+            }
+            if (vtProgress > 50) {
+                ctx.fillStyle = isDark ? '#6ee7b7' : '#047857';
+                ctx.fillText('三角形: ½at²', startX + (endX - startX)*0.4, startY - initialV - 8);
+            }
+        }
+        function toggleVTAnimation() {
+            if (isVTRunning) { cancelAnimationFrame(vtAnimId); isVTRunning = false; }
+            else { isVTRunning = true; runVTAnimation(); }
+        }
+        function runVTAnimation() {
+            const canvas = document.getElementById('vtCanvas');
+            vtProgress += 0.8;
+            if (vtProgress > 100) vtProgress = 100;
+            drawVTFrame(canvas.getContext('2d'), canvas);
+            if (vtProgress < 100) { vtAnimId = requestAnimationFrame(runVTAnimation); }
+            else { isVTRunning = false; }
+        }
+        function resetVTAnimation() {
+            cancelAnimationFrame(vtAnimId); isVTRunning = false; vtProgress = 0; initVTAnimation();
+        }
+
+        // --- 動態動畫 3: 牛頓第二定律 質量賽車對比 ---
+        let nX1 = 10, nX2 = 10, nV1 = 0, nV2 = 0, newtonAnimId = null, isNewtonRunning = false;
+        const mA = 2, mB = 6, F = 10;
+        const aA = F / mA * 0.03, aB = F / mB * 0.03;
+
+        function initNewtonAnimation() {
+            const canvas = document.getElementById('newtonCanvas');
+            if(!canvas) return;
+            canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight;
+            drawNewtonFrame(canvas.getContext('2d'), canvas);
+        }
+        function drawNewtonFrame(ctx, canvas) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const isDark = document.documentElement.classList.contains('dark');
+            const textColor = isDark ? '#cbd5e1' : '#334155';
+
+            // 跑道 1
+            ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(0, 55); ctx.lineTo(canvas.width, 55); ctx.stroke();
+            // 跑道 2
+            ctx.beginPath(); ctx.moveTo(0, 115); ctx.lineTo(canvas.width, 115); ctx.stroke();
+
+            // 物體 1 (輕物)
+            ctx.fillStyle = '#10b981'; ctx.fillRect(nX1, 30, 25, 25);
+            // 物體 2 (重物)
+            ctx.fillStyle = '#f59e0b'; ctx.fillRect(nX2, 80, 35, 35);
+
+            // 推力箭頭 (相同推力)
+            drawArrow(ctx, nX1 + 25, 42.5, 30, '#ef4444');
+            drawArrow(ctx, nX2 + 35, 97.5, 30, '#ef4444');
+
+            // 標示文字
+            ctx.fillStyle = textColor; ctx.font = '11px sans-serif';
+            ctx.fillText(`輕物 m = 2kg ｜ F = 10N ｜ 加速度 a = 5.0 m/s²`, 10, 20);
+            ctx.fillText(`重物 m = 6kg ｜ F = 10N ｜ 加速度 a = 1.7 m/s²`, 10, 72);
+        }
+        function drawArrow(ctx, fromx, fromy, length, color) {
+            ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(fromx, fromy); ctx.lineTo(fromx + length, fromy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(fromx + length, fromy); ctx.lineTo(fromx + length - 5, fromy - 4); ctx.lineTo(fromx + length - 5, fromy + 4); ctx.fill();
+        }
+        function toggleNewtonAnimation() {
+            if (isNewtonRunning) { cancelAnimationFrame(newtonAnimId); isNewtonRunning = false; }
+            else { isNewtonRunning = true; runNewtonAnimation(); }
+        }
+        function runNewtonAnimation() {
+            const canvas = document.getElementById('newtonCanvas');
+            nV1 += aA; nX1 += nV1;
+            nV2 += aB; nX2 += nV2;
+            if (nX1 > canvas.width - 60 && nX2 > canvas.width - 70) { isNewtonRunning = false; return; }
+            drawNewtonFrame(canvas.getContext('2d'), canvas);
+            newtonAnimId = requestAnimationFrame(runNewtonAnimation);
+        }
+        function resetNewtonAnimation() {
+            cancelAnimationFrame(newtonAnimId); isNewtonRunning = false; nX1 = 10; nX2 = 10; nV1 = 0; nV2 = 0; initNewtonAnimation();
         }
     </script>
 </body>
