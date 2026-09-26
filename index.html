@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>物理公式庫 | Physics Formula Hub</title>
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS (樣式庫) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { darkMode: 'class' };
     </script>
-    <!-- KaTeX 數學排版 -->
+    <!-- KaTeX (數學公式排版引擎) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
@@ -26,6 +26,7 @@
                 <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">觀念推導 · 邏輯拆解 · 動態視覺示範</p>
             </div>
             
+            <!-- 深色模式切換 -->
             <button id="themeToggle" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
                 <span id="themeIcon">🌙</span>
             </button>
@@ -37,9 +38,9 @@
         
         <!-- 分類標籤 -->
         <div class="flex flex-wrap gap-2 mb-8 border-b border-slate-200 dark:border-slate-700 pb-4">
-            <button onclick="filterCards('all')" class="filter-btn active-btn px-4 py-1.5 rounded-full text-sm font-medium bg-blue-600 text-white shadow-sm transition-all">全部公式</button>
-            <button onclick="filterCards('motion')" class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 transition-all">直線運動</button>
-            <button onclick="filterCards('newton')" class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 transition-all">牛頓運動定律</button>
+            <button onclick="filterCards('all', this)" class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-blue-600 text-white shadow-sm transition-all">全部公式</button>
+            <button onclick="filterCards('motion', this)" class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 transition-all">直線運動</button>
+            <button onclick="filterCards('newton', this)" class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-300 transition-all">牛頓運動定律</button>
         </div>
 
         <!-- 卡片網格 -->
@@ -82,7 +83,7 @@
                 </div>
             </div>
 
-            <!-- 卡片 2：等加速度位移公式 (已全新改版為動態累積圖) -->
+            <!-- 卡片 2：等加速度位移公式 -->
             <div class="card motion bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
                 <div class="flex justify-between items-start mb-3">
                     <span class="text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-md">直線運動</span>
@@ -122,7 +123,7 @@
                 </div>
             </div>
 
-            <!-- 卡片 3：牛頓第二運動定律 (已改版為兩物體對比實驗動畫) -->
+            <!-- 卡片 3：牛頓第二運動定律 -->
             <div class="card newton bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
                 <div class="flex justify-between items-start mb-3">
                     <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-md">牛頓運動定律</span>
@@ -165,8 +166,10 @@
         </div>
     </main>
 
+    <!-- JS 邏輯 -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        // 頁面完全載入後初始化繪圖與公式
+        window.addEventListener('load', function() {
             renderMathInElement(document.body, {
                 delimiters: [
                     {left: "$$", right: "$$", display: true},
@@ -176,6 +179,13 @@
             initCarAnimation();
             initVTAnimation();
             initNewtonAnimation();
+        });
+
+        // 視窗大小改變時重新設定 Canvas
+        window.addEventListener('resize', function() {
+            resetCarAnimation();
+            resetVTAnimation();
+            resetNewtonAnimation();
         });
 
         // 深色模式切換
@@ -196,7 +206,7 @@
         });
 
         // 分類篩選
-        function filterCards(category) {
+        function filterCards(category, btnElement) {
             const cards = document.querySelectorAll('.card');
             const buttons = document.querySelectorAll('.filter-btn');
             
@@ -205,8 +215,10 @@
                 btn.classList.add('bg-slate-200', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400');
             });
 
-            event.target.classList.remove('bg-slate-200', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400');
-            event.target.classList.add('bg-blue-600', 'text-white');
+            if (btnElement) {
+                btnElement.classList.remove('bg-slate-200', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400');
+                btnElement.classList.add('bg-blue-600', 'text-white');
+            }
 
             cards.forEach(card => {
                 if (category === 'all' || card.classList.contains(category)) {
@@ -222,7 +234,8 @@
         function initCarAnimation() {
             const canvas = document.getElementById('carCanvas');
             if(!canvas) return;
-            canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight;
+            canvas.width = canvas.offsetWidth || 300;
+            canvas.height = canvas.offsetHeight || 128;
             drawCarFrame(canvas.getContext('2d'), canvas);
         }
         function drawCarFrame(ctx, canvas) {
@@ -241,10 +254,16 @@
             ctx.fillText(`加速度 a: 1.2 m/s²`, 130, 22);
         }
         function toggleCarAnimation() {
-            if (isCarRunning) { cancelAnimationFrame(carAnimId); isCarRunning = false; }
-            else { isCarRunning = true; runCarAnimation(); }
+            if (isCarRunning) { 
+                cancelAnimationFrame(carAnimId); 
+                isCarRunning = false; 
+            } else { 
+                isCarRunning = true; 
+                runCarAnimation(); 
+            }
         }
         function runCarAnimation() {
+            if (!isCarRunning) return;
             const canvas = document.getElementById('carCanvas');
             carV += carA; carX += carV;
             if (carX > canvas.width - 45) { carX = 10; carV = 0; }
@@ -255,12 +274,13 @@
             cancelAnimationFrame(carAnimId); isCarRunning = false; carX = 10; carV = 0; initCarAnimation();
         }
 
-        // --- 動態動畫 2: v-t 圖動態面積累積 ---
+        // --- 動態動畫 2: v-t 圖面積累積 ---
         let vtProgress = 0, vtAnimId = null, isVTRunning = false;
         function initVTAnimation() {
             const canvas = document.getElementById('vtCanvas');
             if(!canvas) return;
-            canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight;
+            canvas.width = canvas.offsetWidth || 300;
+            canvas.height = canvas.offsetHeight || 144;
             drawVTFrame(canvas.getContext('2d'), canvas);
         }
         function drawVTFrame(ctx, canvas) {
@@ -268,7 +288,6 @@
             const isDark = document.documentElement.classList.contains('dark');
             const textColor = isDark ? '#cbd5e1' : '#334155';
             
-            // 座標軸
             ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 1.5;
             ctx.beginPath(); 
             ctx.moveTo(35, 15); ctx.lineTo(35, canvas.height - 25); ctx.lineTo(canvas.width - 15, canvas.height - 25); 
@@ -276,15 +295,15 @@
 
             const startX = 35, startY = canvas.height - 25;
             const endX = startX + (canvas.width - 70) * (vtProgress / 100);
-            const initialV = 30; // 初速高度
-            const finalV = 30 + (canvas.height - 70) * (vtProgress / 100); // 隨時間上升
+            const initialV = 30;
+            const finalV = 30 + (canvas.height - 70) * (vtProgress / 100);
 
             if (vtProgress > 0) {
-                // 矩形面積 (v0 * t)
+                // 矩形
                 ctx.fillStyle = isDark ? 'rgba(59, 130, 246, 0.4)' : 'rgba(59, 130, 246, 0.25)';
                 ctx.fillRect(startX, startY - initialV, endX - startX, initialV);
 
-                // 三角形面積 (1/2 * a * t^2)
+                // 三角形
                 ctx.fillStyle = isDark ? 'rgba(16, 185, 129, 0.4)' : 'rgba(16, 185, 129, 0.25)';
                 ctx.beginPath();
                 ctx.moveTo(startX, startY - initialV);
@@ -292,12 +311,11 @@
                 ctx.lineTo(endX, startY - initialV);
                 ctx.fill();
 
-                // v-t 運動斜線
+                // 斜線
                 ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 3;
                 ctx.beginPath(); ctx.moveTo(startX, startY - initialV); ctx.lineTo(endX, startY - finalV); ctx.stroke();
             }
 
-            // 標示文字
             ctx.fillStyle = textColor; ctx.font = '11px sans-serif';
             ctx.fillText('v (速度)', 5, 15);
             ctx.fillText('t (時間)', canvas.width - 45, canvas.height - 8);
@@ -313,22 +331,31 @@
             }
         }
         function toggleVTAnimation() {
-            if (isVTRunning) { cancelAnimationFrame(vtAnimId); isVTRunning = false; }
-            else { isVTRunning = true; runVTAnimation(); }
+            if (isVTRunning) { 
+                cancelAnimationFrame(vtAnimId); 
+                isVTRunning = false; 
+            } else { 
+                isVTRunning = true; 
+                runVTAnimation(); 
+            }
         }
         function runVTAnimation() {
+            if (!isVTRunning) return;
             const canvas = document.getElementById('vtCanvas');
             vtProgress += 0.8;
             if (vtProgress > 100) vtProgress = 100;
             drawVTFrame(canvas.getContext('2d'), canvas);
-            if (vtProgress < 100) { vtAnimId = requestAnimationFrame(runVTAnimation); }
-            else { isVTRunning = false; }
+            if (vtProgress < 100) { 
+                vtAnimId = requestAnimationFrame(runVTAnimation); 
+            } else { 
+                isVTRunning = false; 
+            }
         }
         function resetVTAnimation() {
             cancelAnimationFrame(vtAnimId); isVTRunning = false; vtProgress = 0; initVTAnimation();
         }
 
-        // --- 動態動畫 3: 牛頓第二定律 質量賽車對比 ---
+        // --- 動態動畫 3: 牛頓第二定律 質量賽車 ---
         let nX1 = 10, nX2 = 10, nV1 = 0, nV2 = 0, newtonAnimId = null, isNewtonRunning = false;
         const mA = 2, mB = 6, F = 10;
         const aA = F / mA * 0.03, aB = F / mB * 0.03;
@@ -336,7 +363,8 @@
         function initNewtonAnimation() {
             const canvas = document.getElementById('newtonCanvas');
             if(!canvas) return;
-            canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight;
+            canvas.width = canvas.offsetWidth || 300;
+            canvas.height = canvas.offsetHeight || 144;
             drawNewtonFrame(canvas.getContext('2d'), canvas);
         }
         function drawNewtonFrame(ctx, canvas) {
@@ -344,22 +372,19 @@
             const isDark = document.documentElement.classList.contains('dark');
             const textColor = isDark ? '#cbd5e1' : '#334155';
 
-            // 跑道 1
             ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 1;
             ctx.beginPath(); ctx.moveTo(0, 55); ctx.lineTo(canvas.width, 55); ctx.stroke();
-            // 跑道 2
             ctx.beginPath(); ctx.moveTo(0, 115); ctx.lineTo(canvas.width, 115); ctx.stroke();
 
-            // 物體 1 (輕物)
+            // 輕物
             ctx.fillStyle = '#10b981'; ctx.fillRect(nX1, 30, 25, 25);
-            // 物體 2 (重物)
+            // 重物
             ctx.fillStyle = '#f59e0b'; ctx.fillRect(nX2, 80, 35, 35);
 
-            // 推力箭頭 (相同推力)
+            // 箭頭
             drawArrow(ctx, nX1 + 25, 42.5, 30, '#ef4444');
             drawArrow(ctx, nX2 + 35, 97.5, 30, '#ef4444');
 
-            // 標示文字
             ctx.fillStyle = textColor; ctx.font = '11px sans-serif';
             ctx.fillText(`輕物 m = 2kg ｜ F = 10N ｜ 加速度 a = 5.0 m/s²`, 10, 20);
             ctx.fillText(`重物 m = 6kg ｜ F = 10N ｜ 加速度 a = 1.7 m/s²`, 10, 72);
@@ -370,10 +395,16 @@
             ctx.beginPath(); ctx.moveTo(fromx + length, fromy); ctx.lineTo(fromx + length - 5, fromy - 4); ctx.lineTo(fromx + length - 5, fromy + 4); ctx.fill();
         }
         function toggleNewtonAnimation() {
-            if (isNewtonRunning) { cancelAnimationFrame(newtonAnimId); isNewtonRunning = false; }
-            else { isNewtonRunning = true; runNewtonAnimation(); }
+            if (isNewtonRunning) { 
+                cancelAnimationFrame(newtonAnimId); 
+                isNewtonRunning = false; 
+            } else { 
+                isNewtonRunning = true; 
+                runNewtonAnimation(); 
+            }
         }
         function runNewtonAnimation() {
+            if (!isNewtonRunning) return;
             const canvas = document.getElementById('newtonCanvas');
             nV1 += aA; nX1 += nV1;
             nV2 += aB; nX2 += nV2;
